@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - EngageHub</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Inline login-specific styles */
+    .login-box {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .login-box h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 14px;
+      color: #666;
+      background: transparent;
+      border: none;
+    }
+    .remember-me {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    .remember-me input {
+      margin-right: 8px;
+    }
+    @media (max-width: 500px) {
+      .login-box {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="index.html" class="app-brand">EngageHub</a>
+  <nav class="nav-buttons">
+    <a href="quiz-list.html" class="btn-login">Browse Quizzes</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="login-box">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required/>
+      
+      <div class="password-wrapper">
+        <input type="password" id="loginPassword" placeholder="Password" required/>
+        <button type="button" class="password-toggle" onclick="togglePassword()">Show</button>
+      </div>
+
+      <label class="remember-me">
+        <input type="checkbox" id="rememberMe"/> Remember Me
+      </label>
+
+      <button type="submit" class="primary" style="width:100%; margin-top:15px;">Login</button>
+    </form>
+    <p style="text-align:center; margin-top:15px;">Don't have an account? 
+      <a href="signup.html">Sign up</a>
+    </p>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+  function togglePassword() {
+    const pwd = document.getElementById('loginPassword');
+    const btn = document.querySelector('.password-toggle');
+    if (pwd.type === 'password') {
+      pwd.type = 'text';
+      btn.textContent = 'Hide';
+    } else {
+      pwd.type = 'password';
+      btn.textContent = 'Show';
+    }
+  }
+</script>
+</body>
+</html>

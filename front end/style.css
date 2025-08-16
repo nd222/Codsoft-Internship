@@ -1,0 +1,169 @@
+:root {
+    --primary-color: #5d5dff; /* Vibrant purple */
+    --secondary-color: #a0a0ff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --background-light: #f4f7f9;
+    --background-dark: #eef1f4;
+    --text-color: #2d3748;
+    --text-light: #718096;
+    --card-bg: #ffffff;
+    --border-color: #d1d8e0;
+    --box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    --font-family: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ------------------------ */
+/* Global                   */
+/* ------------------------ */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f4f7f9 50%, #d6e4ff 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+    color: var(--text-color);
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Smooth fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------------ */
+/* Header                   */
+/* ------------------------ */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 35px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.app-brand {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-buttons a {
+    margin-left: 15px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    font-size: 0.95rem;
+}
+
+.btn-login {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.btn-login:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+.btn-signup {
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 1px solid #fff;
+    font-weight: 600;
+}
+
+.btn-signup:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* ------------------------ */
+/* Homepage Hero            */
+/* ------------------------ */
+.main-title {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Big Buttons */
+.big-btn {
+    display: inline-block;
+    width: 80%;
+    max-width: fit-content;
+    padding: 12px 15px;
+    font-size: 1 rem;
+    font-weight: 600;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+}
+
+.big-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Specific Styles */
+.primary.big-btn {
+    background-color: var(--primary-color);
+    color: rgb(255, 255, 255);
+    max-width: fit-content;
+}
+
+.success.big-btn {
+    background-color: var(--success-color);
+    color: #fff;
+}
+
+.browse-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.browse-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+

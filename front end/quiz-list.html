@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Quizzes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Available Quizzes</h1>
+    <a href="index.html" class="back-link">← Go back to create a quiz</a>
+    <hr>
+    <div id="quiz-list-container">
+        </div>
+</div>
+
+<script>
+    async function fetchQuizzes() {
+        const quizListContainer = document.getElementById("quiz-list-container");
+        quizListContainer.innerHTML = "Loading quizzes...";
+
+        try {
+            const response = await fetch("http://localhost:5000/api/quizzes");
+            if (!response.ok) {
+                throw new Error("Failed to fetch quizzes from the server.");
+            }
+            const quizzes = await response.json();
+
+            if (quizzes.length === 0) {
+                quizListContainer.innerHTML = "<p>No quizzes available. Go back and create one!</p>";
+                return;
+            }
+
+            quizListContainer.innerHTML = "";
+            quizzes.forEach(quiz => {
+                const quizElement = document.createElement("div");
+                quizElement.className = "quiz-card";
+                quizElement.innerHTML = `
+                    <h3>${quiz.title}</h3>
+                    <p>Difficulty: ${quiz.difficulty}</p>
+                    <button onclick="startQuiz('${quiz.id}')">Start Quiz</button>
+                `;
+                quizListContainer.appendChild(quizElement);
+            });
+
+        } catch (error) {
+            quizListContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+            console.error("Fetch error:", error);
+        }
+    }
+
+    // This function will be implemented later to display the quiz
+    function startQuiz(quizId) {
+        alert("Feature not yet implemented. Quiz ID: " + quizId);
+        // We will add the quiz playing logic here in a future step.
+    }
+
+    // Call the function when the page loads
+    fetchQuizzes();
+</script>
+</body>
+</html>

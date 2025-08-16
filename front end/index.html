@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EngageHub</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="index.html" class="app-brand">EngageHub</a>
+  <nav class="nav-buttons">
+    <a href="quiz-list.html" class="btn-login">Browse Quizzes</a>
+
+    <!-- Auth buttons container -->
+    <span id="auth-buttons">
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+    </span>
+
+    <!-- Username + logout -->
+    <span id="user-info" style="display:none;">
+      <span id="username-display"></span>
+      <button id="logout-btn" class="btn-login" style="margin-left:10px;">Logout</button>
+    </span>
+  </nav>
+</header>
+
+<!-- Home Section -->
+<div class="container" id="home-section">
+  <h1 class="main-title">Engage Up</h1>
+  <div class="button-group">
+    <button class="primary big-btn" onclick="showAIQuiz()">✨ AI Quiz</button>
+    <button class="success big-btn" onclick="showManualQuiz()">✍️ Manual Quiz</button>
+    <a href="quiz-list.html" class="big-btn browse-btn">📚 Browse Quizzes</a>
+  </div>
+</div>
+
+<!-- AI Quiz Generator -->
+<div class="container" id="ai-quiz-generator" style="display:none;">
+  <h2>Generate AI Quiz</h2>
+  <input type="text" id="topic" placeholder="Enter topic" />
+  <input type="text" id="difficulty" placeholder="Enter difficulty (easy/medium/hard)" />
+  <button class="primary big-btn" onclick="generateQuizFromAI()">✨ Generate Quiz</button>
+  <button class="browse-btn big-btn" onclick="goHome()">⬅ Back</button>
+</div>
+
+<!-- Manual Quiz Builder -->
+<div class="container" id="quiz-maker" style="display:none;">
+  <h2>Create a Quiz Manually</h2>
+  <input type="text" id="quiz-title" placeholder="Enter quiz title" />
+  <div id="questions"></div>
+  <button class="primary big-btn" onclick="addQuestion()">+ Add Question</button>
+  <button class="success big-btn" onclick="saveQuiz()">Save Quiz</button>
+  <button class="browse-btn big-btn" onclick="goHome()">⬅ Back</button>
+</div>
+
+<!-- Quiz Player -->
+<div class="container" id="quiz-player" style="display:none;">
+  <h2 id="play-title"></h2>
+  <div id="quiz-content"></div>
+  <button class="primary big-btn" onclick="submitQuiz()">Submit Quiz</button>
+  <button class="browse-btn big-btn" onclick="goHome()">⬅ Back</button>
+</div>
+
+<!-- Results -->
+<div class="container" id="results" style="display:none;">
+  <h2>Your Results</h2>
+  <p id="score"></p>
+  <button class="success big-btn" onclick="restart()">Create New Quiz</button>
+  <button class="browse-btn big-btn" onclick="goHome()">⬅ Back</button>
+</div>
+
+<script src="script.js"></script>
+<script src="auth.js"></script>
+<script>
+  // ✅ Handle login state
+  document.addEventListener("DOMContentLoaded", () => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      document.getElementById("auth-buttons").style.display = "none";
+      document.getElementById("user-info").style.display = "inline";
+      document.getElementById("username-display").textContent = "👋 " + loggedInUser;
+
+      // Logout
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        window.location.reload();
+      });
+    }
+  });
+
+  // ✅ Navigation helpers
+  function showAIQuiz() {
+    toggleSections("ai-quiz-generator");
+  }
+  function showManualQuiz() {
+    toggleSections("quiz-maker");
+  }
+  function goHome() {
+    toggleSections("home-section");
+  }
+
+  function toggleSections(showId) {
+    const sections = ["home-section", "ai-quiz-generator", "quiz-maker", "quiz-player", "results"];
+    sections.forEach(id => {
+      document.getElementById(id).style.display = (id === showId) ? "block" : "none";
+    });
+  }
+</script>
+</body>
+</html>
